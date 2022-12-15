@@ -36,8 +36,8 @@ function trainGame(target, numbers, log = [], log2 = []) {
 					
 					trainGame(target, [...newNumbers, number1 * number2], [`${number1} * ${number2}`, ...log], [numbers, ...log2]) +
 					
-					trainGame(target, [...newNumbers, number1 / number2], [`${number1} / ${number2}`, ...log], [numbers, ...log2]) +
-					trainGame(target, [...newNumbers, number2 / number2], [`${number2} / ${number1}`, ...log], [numbers, ...log2]) +
+					(number2 !== 0 ? trainGame(target, [...newNumbers, number1 / number2], [`${number1} / ${number2}`, ...log], [numbers, ...log2]) : 0) +
+					(number1 !== 0 ? trainGame(target, [...newNumbers, number2 / number1], [`${number2} / ${number1}`, ...log], [numbers, ...log2]) : 0) +
 					
 					trainGame(target, [...newNumbers, Math.pow(number1, number2)], [`${number1} ^ ${number2}`, ...log], [numbers, ...log2]) +
 					trainGame(target, [...newNumbers, Math.pow(number2, number1)], [`${number2} ^ ${number1}`, ...log], [numbers, ...log2])
@@ -52,7 +52,7 @@ function trainGame(target, numbers, log = [], log2 = []) {
 	}
 }
 
-console.log(trainGame(10,[7,7,6,6]));
+console.log(trainGame(10,[0,5,3,2]));
 
 
 function factorial(n) {
